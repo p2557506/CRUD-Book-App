@@ -1,5 +1,7 @@
 import express from "express"
 import mysql from "mysql"
+import cors from 'cors'
+
 
 const app = express()
 
@@ -17,6 +19,7 @@ const db = mysql.createConnection({
 
 //Allows us to send any json file using a client
 app.use(express.json())
+app.use(cors())
 
 app.get("/", (req,res)=>{
     //Send message to user
@@ -36,7 +39,7 @@ app.get("/books", (req,res)=>{
 })
 
 app.post("/books", (req,res)=>{
-    const query = "INSERT INTO books (`title`,`desc`,`cover`) VALUES (?)"
+    const query = "INSERT INTO books (`title`,`desc`,`cover`,`price`) VALUES (?)"
     const values = [
         /**"title from backend",
         "desc from backend",
@@ -44,7 +47,8 @@ app.post("/books", (req,res)=>{
         //Better alternative to hardcoding
         req.body.title,
         req.body.desc,
-        req.body.cover
+        req.body.cover,
+        req.body.price,
     ];
 
     db.query(query,[values], (err,data)=>{
