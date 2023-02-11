@@ -54,9 +54,32 @@ app.post("/books", (req,res)=>{
     db.query(query,[values], (err,data)=>{
         if(err) return res.json(err)
         return res.json("Book has been created successfully")
-    })
-})
+    });
+});
+/*End point is /books, this is the location the api recieves requests from*/
+/*Method to delete book*/
+app.delete("/books/:idbooks", (req,res)=>{
+    const bookId = req.params.idbooks;
+    const q = "DELETE FROM books WHERE idbooks = ?";
+
+    db.query(q,[bookId], (err,data)=>{
+        if(err) return res.json(err);
+        return res.json("Book has been deleted successfully");
+    });
+
+});
+/**New request endpoint */
+app.delete("/books/:idbooks", (req,res)=>{
+    const bookId = req.params.idbooks;
+    const q = "DELETE FROM books WHERE idbooks = ?";
+
+    db.query(q,[bookId], (err,data)=>{
+        if(err) return res.json(err);
+        return res.json("Book has been deleted successfully");
+    });
+
+});
 
 app.listen(8800, ()=>{
     console.log("Connected to backend!")
-})
+});

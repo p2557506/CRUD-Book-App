@@ -43,7 +43,7 @@ const Add = ()  => {
             <input type="text" placeholder="cover" onChange={handleChange} name="cover"/>
             <input type="number" placeholder="price"onChange={handleChange} name="price"/>
             {/*Button sends fields to backend server when clicked */}
-            <button onClick={handleClick}>Add</button>
+            <button className="formButton" onClick={handleClick}>Add</button>
         </div>
     )
 }

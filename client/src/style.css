@@ -1,0 +1,73 @@
+/*Use . to access className and # to access id*/
+/*App class names affects all webpages since the div holds the imports of all webpages*/
+.App{
+    height: 100vh;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/*Affects individual books*/
+.books{
+    display: flex;
+    gap: 10px;
+
+}
+/*Books is a parent of of book*/
+.book{
+   flex: 1; 
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   align-items: center;
+}
+/*Affects all images*/
+img{
+    width: 200px;
+    height: 300px;
+    /*object-fit preserves the image's aspect ratio*/
+    object-fit: cover;
+}
+
+.delete{
+    border:none;
+    padding: 3px 6px;
+    background-color: white;
+    cursor: pointer;
+    border: 1px solid  	#FF0000;
+    color: black;
+   
+}
+
+.update{
+    border: none;
+    padding: 3px 6px;
+    background-color: white;
+    cursor: pointer;
+    border: 1px solid	#00FFFF;
+    color: black;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input{
+    width: 250px;
+    padding: 10px;
+    border: 1px solid gray;
+}
+
+.formButton{
+    border: none;
+    padding: 10px;
+    background-color: lightcoral ;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+
+}
