@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Update = ()  => {
     //Taking data from inputs => use UseState
@@ -12,6 +12,12 @@ const Update = ()  => {
     });
 
     const navigate = useNavigate()
+    const location = useLocation()
+
+    const bookId = location.pathname.split("/")[2]
+    //Logs the 3rd element of the array which is the id number
+    console.log(location.pathname.split("/")[2])
+
     //Arrow function 
     const handleChange = (e) =>{
         setBook(prev=>({...prev, [e.target.name]: e.target.value}));
@@ -24,7 +30,8 @@ const Update = ()  => {
         //Axios used to communicate with backend, in this case to send data, function should be async when making api requests
         try{
             //Sending JSON Object to endpoint
-            await axios.post("http://localhost:8800/books",book)
+            await axios.put("http://localhost:8800/books/" + bookId, book)
+            //Returns back to homepage
             navigate("/")
 
         }catch(err){

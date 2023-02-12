@@ -69,13 +69,25 @@ app.delete("/books/:idbooks", (req,res)=>{
 
 });
 /**New request endpoint */
-app.delete("/books/:idbooks", (req,res)=>{
+app.put("/books/:idbooks", (req,res)=>{
     const bookId = req.params.idbooks;
-    const q = "DELETE FROM books WHERE idbooks = ?";
+    /*SQL squery that changes the book's title,desc,price and cover */
+    const q = "UPDATE books SET `title` = ?, `desc` = ?, `cover` = ?, `price` = ? WHERE idbooks = ?";
 
-    db.query(q,[bookId], (err,data)=>{
+    const values = [
+        /**"title from backend",
+        "desc from backend",
+        "cover pic from backend"*/
+        //Better alternative to hardcoding
+        req.body.title,
+        req.body.desc,
+        req.body.cover,
+        req.body.price,
+    ];
+
+    db.query(q,[...values,bookId], (err,data)=>{
         if(err) return res.json(err);
-        return res.json("Book has been deleted successfully");
+        return res.json("Book has been updated successfully");
     });
 
 });
